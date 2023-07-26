@@ -1,0 +1,100 @@
+﻿<Window x:Class="Clinic.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clinic"
+        xmlns:local_model="clr-namespace:Clinic.Models"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="1600"
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style x:Key="ListViewItemStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="FontSize" Value="15" />
+        </Style>
+        <local_model:GenderConvert x:Key="_GenderConvert"/>
+        <local_model:DobConvert x:Key="_DobConvert"/>
+    </Window.Resources>
+    <Grid Margin="0,10,0,-6" RenderTransformOrigin="0.513,0.389" HorizontalAlignment="Center" Width="1600">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Width="NaN" Height="NaN" Margin="29,0,10,764" Background="AliceBlue" Orientation="Horizontal">
+            <Button Name="ManagePatient" Content="Quản Lý Hồ Sơ" Width="88" Height="35" Margin="20 0 0 0" Click="ManagePatient_Click"/>
+            <Button Name="AddPatient" Content="Nhập Hồ Sơ" Width="88" Height="35" Margin="10 0 0 0" Click="AddPatient_Click"/>
+            <Button Name="ManageDrug" Content="Quản Lý Tủ Thuốc" Width="108" Height="35" Margin="10 0 0 0" Click="ManageDrug_Click"/>
+            <Button Name="ManageService" Content="Quản Lý Dịch Vụ" Width="100" Height="35" Margin="10 0 0 0" Click="ManageService_Click"/>
+            <Button Name="ManageMoney" Content="Quản Lý Doanh Thu" Width="120" Height="35" Margin="10 0 0 0" Click="ManageMoney_Click"/>
+            <Button Name="Shutdown" Height="35" Margin="870 0 0 0" Click="Shutdown_Click">Tắt Ứng Dụng</Button>
+        </StackPanel>
+        <Grid Margin="29,40,0,10" Background="Honeydew">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="691*"/>
+                <ColumnDefinition Width="686*"/>
+                <ColumnDefinition Width="171*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock  Text="DANH SÁCH BỆNH NHÂN" FontSize="30" Height="38" RenderTransformOrigin="-5.022,3.743" Margin="26,73,254,238" Grid.Column="2"/>
+            <ListView x:Name="lvBN" Margin="0,137,512,68" SelectionChanged="lvBN_SelectionChanged"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="855" Grid.Column="2">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" Width="60"
+                                        DisplayMemberBinding="{Binding Path=Pid}"/>
+                        <GridViewColumn Header="Tên Bệnh Nhân" Width="150" 
+                                        DisplayMemberBinding="{Binding Path=Pname}"/>
+                        <GridViewColumn Header="Năm Sinh" Width="100"
+                                        DisplayMemberBinding="{Binding Path=Dob,Converter={StaticResource _DobConvert}}"/>
+                        <GridViewColumn Header="Giới Tính" Width="55"
+                                        DisplayMemberBinding="{Binding Path=Gender,Converter={StaticResource _GenderConvert}}">
+                        </GridViewColumn>
+                        <GridViewColumn Header="Địa chỉ" Width="200"
+                                        DisplayMemberBinding="{Binding Path=Address}"/>
+                        <GridViewColumn Header="Yêu Cầu Khám" Width="300"
+                                        DisplayMemberBinding="{Binding Path=Reason}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Label FontSize="18" Margin="200,137,394,177" Grid.Column="3">Họ Và Tên:</Label>
+            <TextBox x:Name="tbName" Margin="297,137,95,177" Grid.Column="3" Height="25"/>
+            <TextBox x:Name="tbAddress" TextWrapping="Wrap" Margin="292,177,95,137" Grid.Column="3" Height="25"/>
+            <TextBox x:Name="tbReason" TextWrapping="Wrap" Margin="332,217,53,97" Grid.ColumnSpan="2" Grid.Column="3" Height="25"/>
+            <TextBox x:Name="tbDateaad" IsReadOnly="True" TextWrapping="Wrap" Margin="348,264,53,50" Grid.Column="3" Grid.ColumnSpan="2" Height="25"/>
+
+            <TextBox x:Name="tbDiagnostic" TextWrapping="Wrap" Margin="200,346,53,275" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="3" />
+            <TextBox x:Name="tbConclusion" TextWrapping="Wrap" Margin="200,181,53,68" Grid.ColumnSpan="2" Grid.Column="3" Grid.Row="1" />
+            <TextBox x:Name="tbDob" Height="25" Margin="7,137,53,177" Grid.Column="4" />
+            <TextBox x:Name="tbSex" Height="25" Margin="7,177,53,137" Grid.Column="4" />
+            <Label FontSize="18" Margin="200,177,394,137" Grid.Column="3">Địa Chỉ:</Label>
+            <Label FontSize="18" Margin="200,134,270,228" Grid.Column="3" Grid.Row="1">Phương Pháp Điều Trị:</Label>
+            <Label FontSize="18" Margin="200,217,354,97" Grid.Column="3">Yêu Cầu Khám:</Label>
+            <Label FontSize="18" Margin="200,304,354,10" Grid.Column="3">Chẩn Đoán:</Label>
+            <Label FontSize="18" Margin="200,264,343,50" Grid.Column="3">Ngày Chỉnh Sửa:</Label>
+            <Label x:Name="lbPID" FontSize="15" Margin="205,109,440,223" Grid.Column="3"/>
+            <Label FontSize="18" Margin="596,137,169,177" Grid.ColumnSpan="2" Grid.Column="3">Năm Sinh:</Label>
+            <Label FontSize="18" Margin="596,177,169,137" Grid.ColumnSpan="2" Grid.Column="3">Giới Tính:</Label>
+            <Button Height="25" Margin="373,347,182,33" Name="LoadListBN" Content="Tải Danh Sách" Click="LoadListBN_Click" Grid.Row="1" Grid.Column="2"/>
+            <Button Height="25" Margin="332,347,218,33" Name="Edit" Content="Lưu Chỉnh Sửa" Click="Edit_Click" Grid.Row="1" Grid.Column="3"/>
+            <Button Height="25" Margin="540,347,10,33" Name="Delete" Content="Xoá Bệnh Án" Click="Delete_Click" Grid.Row="1" Grid.Column="3" RenderTransformOrigin="0.528,-0.132"/>
+            <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Tìm Kiếm" FontWeight="Bold" FontSize="16" VerticalAlignment="Top"/>
+            <TextBox Grid.Column="3" x:Name="tbsn" HorizontalAlignment="Left" Margin="143,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="273" Height="24"/>
+            <TextBox Grid.Column="3" x:Name="tbsa" HorizontalAlignment="Left" Margin="531,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" Height="24"/>
+            <Label Grid.Column="3" FontSize="15" Content="Tên bệnh nhân" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
+            <Label Grid.Column="3" FontSize="15" Content="Năm Sinh" HorizontalAlignment="Left" Margin="441,38,0,0" VerticalAlignment="Top" RenderTransformOrigin="10.45,0.843"/>
+            <Label Grid.Column="3" FontSize="15" Content="Giới Tính" HorizontalAlignment="Left" Margin="12,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="10.45,0.843"/>
+            <ComboBox x:Name="cbsg" Grid.Column="3" HorizontalAlignment="Left" Margin="143,82,0,0" VerticalAlignment="Top" Width="149">
+                <ComboBoxItem IsEnabled="True">All</ComboBoxItem>
+                <ComboBoxItem>Nam</ComboBoxItem>
+                <ComboBoxItem>Nữ</ComboBoxItem>
+            </ComboBox>
+            <Button Grid.Column="4" Content="Tìm Kiếm" HorizontalAlignment="Left" Margin="7,47,0,0" VerticalAlignment="Top" Height="26" Width="56" Click="Button_Click"/>
+
+        </Grid>
+    </Grid>
+</Window>
