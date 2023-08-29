@@ -2348,11 +2348,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Clinic\\Clinic\\Clinic.csproj",
+      "projectUniqueName": "D:\\ClinicManagement\\Clinic\\Clinic\\Clinic.csproj",
       "projectName": "Clinic",
-      "projectPath": "D:\\Clinic\\Clinic\\Clinic.csproj",
+      "projectPath": "D:\\ClinicManagement\\Clinic\\Clinic\\Clinic.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "D:\\Clinic\\Clinic\\obj\\",
+      "outputPath": "D:\\ClinicManagement\\Clinic\\Clinic\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",

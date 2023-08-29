@@ -4,12 +4,12 @@
 winexe
 C#
 .cs
-D:\Clinic\Clinic\obj\Debug\net6.0-windows\
+D:\ClinicManagement\Clinic\Clinic\obj\Debug\net6.0-windows\
 Clinic
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\Clinic\Clinic\App.xaml
+D:\ClinicManagement\Clinic\Clinic\App.xaml
 6904869930
 
 221195234284
